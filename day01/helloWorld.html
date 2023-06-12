@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p id="place">안녕하세요</p>
+    <button id="bye">퇴장</button>
+
+
+    <script>
+        const 퇴장버튼 = document.getElementById('bye');
+        const 인사말공간 = document.getElementById('place');
+
+        퇴장버튼.onclick = () => {
+            인사말공간.innerText = '안녕히가세요';
+        }
+
+
+
+    </script>
+</body>
+
+</html>
