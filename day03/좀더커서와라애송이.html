@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        출생년도를 입력 받은 뒤
+        성인일경우 판매하고, = 20살 이상인경우
+        성인이 아닐경우 몇년뒤 다시 오라는 메세지를 출력하게 해주세요
+
+     -->
+
+    <script>
+
+        const birthYear = Number(prompt('몇년생이세요?'));
+
+        const userAge = 2023 - birthYear + 1;
+
+        // 조건 ? 참일때 : 거짓일때
+        userAge >= 20 ? alert('여기있습니다 손님 ^^') : alert(`${20 - userAge}년뒤에 다시와라 애송이`)
+
+    </script>
+</body>
+
+</html>
