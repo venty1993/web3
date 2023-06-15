@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    복숭아 갯수에 따라 필요한 바구니의 갯수를 구하는 계산기
+
+    한 바구니에 복숭아가 10개까지 들어간다.
+
+    복숭아를 모두 담으려면 몇개의 바구니가 필요한지 구해서
+    알림창에 출력,
+
+    입력은 prompt로 받겠습니다
+
+
+    내림 기능 : Math.floor(123.456) -> 123
+
+    힌트1 : % 연산자를 사용합니다
+    힌트2 :
+    if(?????) {
+    바구니++
+    }
+
+    <script>
+        const 복숭아 = Number(prompt('복숭아 몇개?'));
+        let 바구니 = Math.floor(복숭아 / 10)
+
+        if (복숭아 % 10 !== 0) {
+            바구니++;
+        }
+        alert(바구니)
+    </script>
+</body>
+
+</html>

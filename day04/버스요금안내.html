@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const userAge = Number(prompt('나이를 입력해주세요'));
+
+        // if (userAge < 7) {
+        //     alert('무료입니다')
+        // } else if (userAge < 14) {
+        //     alert('어린이 요금은 500원입니다.')
+        // } else if (userAge < 20) {
+        //     alert('청소년 요금은 870원 입니다.')
+        // } else {
+        //     alert('성인 요금은 1250원 입니다.');
+        // }
+
+
+        // --------------------------------- 
+
+
+        // let cost;
+        // let category;
+        // if (userAge < 7) {
+        //     category = '영유아';
+        //     cost = 0;
+        // } else if (userAge < 14) {
+        //     category = '어린이';
+        //     cost = 500;
+        // } else if (userAge < 20) {
+        //     category = '청소년';
+        //     cost = 870;
+        // } else {
+        //     category = '일반';
+        //     cost = 1250;
+        // }
+
+        // alert(`${category}요금은 ${cost}원 입니다`);
+
+        const 요금표 = {
+            '일반': 1250,
+            '청소년': 870,
+            '어린이': 500,
+            '영유아': 0
+        }
+
+        if (userAge < 7) {
+            category = '영유아';
+        } else if (userAge < 14) {
+            category = '어린이';
+        } else if (userAge < 20) {
+            category = '청소년';
+        } else {
+            category = '일반';
+        }
+
+        alert(`${category} 요금은 ${요금표[category]}원 입니다.`)
+
+    </script>
+</body>
+
+</html>

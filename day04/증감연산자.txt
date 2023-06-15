@@ -1,0 +1,27 @@
+++ : 증가
+-- : 감소
+
+let index = 0;
+
+index++;
+
+alert(index);
+
+-> 1
+
+---------------------------
+
+index++ 라는건 풀어서 쓰면
+
+index += 1; 이고, 더 풀어서 쓰면
+
+index = index + 1; 이다.
+
+
+---------------------
+let index = 0 ; // index = 0
+                // index = 0
+alert(index++); // index = 0, 알림창 : 0
+alert(index)    // index = 1  알림창 : 1
+alert(++index)  // index = 2  찰림창 : 2
+                // index = 2
