@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+
+            width: 400px;
+            border: 1px solid #222;
+            border-radius: 4px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    프롬프트로 입력을 받을겁니다.
+
+    "몇단은 출력할까요?"
+
+    숫자를 입력하면 해당 단을 출력합니다.(x 1부터 x 9 까지 출력)
+    * 출력은 document.write(출력할내용); 을 이용해서 합니다.
+
+    document.write()란?
+    - html 문서에 내용을 추가해주는 명령어이다.
+    - 이 기능(메서드)을 이용하면 자바스크립트로 html에 내용을 쓸수 있다.
+
+    <br>
+    <!-- 
+        let a = 0 ;
+              초기값     조건식   증감식
+        for(let i = 1 ; i <= 10 ; i ++) {
+            a = a + i;
+        } 
+    -->
+
+    <script>
+
+        const dan = Number(prompt('몇단을 출력할까요?'))
+
+        // document.write('<div class="container">')
+
+        for (let i = 1; i <= 9; i++) {
+            document.write(`${dan} x ${i} = ${dan * i}`);
+            document.write('<br>');
+        }
+
+        // document.write('</div>');
+
+
+    </script>
+</body>
+
+</html>
