@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .gugu-container {
+            display: flex;
+            gap: 8px;
+            width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .dan {
+            width: 100px;
+            border: 1px solid #232323;
+            padding: 8px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        1x1부터 1x9,
+        2x1부터 2x9,
+        .
+        .
+        .
+        .
+        9x1부터 9x9까지 document.write()를 이용해 출력해봅시다!
+     -->
+    <script>
+        // document.write(`<div class="gugu-container">`);
+        // for (let dan = 1; dan <= 9; dan++) {
+        //     document.write(`<div class="dan">
+        //     <h3>${dan}단</h3>`)
+        //     for (let i = 1; i <= 9; i++) {
+        //         document.write(`<p> ${dan} * ${i} = ${dan * i} </p>`);
+        //     }
+        //     document.write(`</div>`);
+        // }
+        // document.write(`</div>`);
+
+        document.write('<div class="gugu-container">')
+        for (let j = 1; j < 10; j++) {
+            document.write('<div class="dan">')
+            document.write(`<h3>${j}단</h3>`);
+            for (let i = 1; i < 10; i++) {
+                document.write(`<p>${j} x ${i} = ${j * i}</p>`)
+            }
+            document.write('</div>')
+        }
+        document.write('</div>')
+
+        function 더하기머신(a, b) {
+            const 합계 = a + b;
+        }
+
+        더하기머신(1, 2)
+
+        alert(합계)
+    </script>
+</body>
+</body>
+
+</html>

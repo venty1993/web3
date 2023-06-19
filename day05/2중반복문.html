@@ -24,47 +24,22 @@
 </head>
 
 <body>
-    <div class="container">
-        <div>div</div>
-        <div>div</div>
-        <div>div</div>
-        <div>div</div>
-        <div>div</div>
-    </div>
+
     <script>
         // 위의 html을 document.write()를 이용해 자바스크립트로 만듭니다!!
-        document.write('<div class="container">');
+
         for (let i = 0; i < 5; i++) {
-            document.write('<div>div</div>')
+            document.write('<div class="container">');
+            for (let j = 0; j < 5; j++) {
+                document.write('<div>div</div>')
+            }
+            document.write('</div>');
         }
-        document.write('</div>');
-
-        document.write('<div class="container">');
-        for (let i = 0; i < 5; i++) {
-            document.write('<div>div</div>')
-        }
-        document.write('</div>');
 
 
-        document.write('<div class="container">');
-        for (let i = 0; i < 5; i++) {
-            document.write('<div>div</div>')
-        }
-        document.write('</div>');
 
 
-        document.write('<div class="container">');
-        for (let i = 0; i < 5; i++) {
-            document.write('<div>div</div>')
-        }
-        document.write('</div>');
 
-
-        document.write('<div class="container">');
-        for (let i = 0; i < 5; i++) {
-            document.write('<div>div</div>')
-        }
-        document.write('</div>');
 
 
     </script>
