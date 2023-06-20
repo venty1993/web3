@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .star {
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            background-color: pink;
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+
+        }
+
+        .empty {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+
+
+        for (let i = 0; i < 5; i++) {
+            for (let j = 0; j < 5; j++) {
+                makeStar();
+            }
+            enter();
+        }
+
+
+        enter();
+        enter();
+
+
+        for (let i = 0; i < 5; i++) {
+            for (let j = 0; j < 5 - i; j++) {
+                makeStar();
+            }
+
+            enter();
+        }
+        enter();
+        enter();
+        for (let i = 0; i < 5; i++) {
+            for (let j = 0; j < i + 1; j++) {
+                makeStar();
+            }
+
+            enter();
+        }
+
+        enter();
+        enter();
+
+        for (let i = 0; i < 5; i++) {
+            for (let j = 0; j < i; j++) {
+                makeEmpty();
+            }
+
+            for (let j = 0; j < 5 - i; j++) {
+                makeStar();
+            }
+
+            enter();
+        }
+
+
+
+
+        function makeStar() {
+            document.write(`<div class="star"></div>`);
+        }
+        function makeEmpty() {
+            document.write(`<div class="empty"></div>`);
+        }
+        function enter() {
+            document.write(`<br>`);
+        }
+    </script>
+</body>
+
+</html>

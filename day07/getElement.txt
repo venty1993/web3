@@ -1,0 +1,9 @@
+
+
+
+
+        document.querySelector()
+        document.querySelectorAll()
+        document.getElementById()
+        document.getElementsByClassName()
+        document.getElementsByTagName()
