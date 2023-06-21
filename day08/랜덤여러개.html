@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        당신의 점수는
+        <p>국어<span class="score"></span>점</p>
+        <p>영어<span class="score"></span>점</p>
+        <p>수학<span class="score"></span>점</p>
+        <p>과학<span class="score"></span>점</p>
+        <p>과학a<span class="score"></span>점</p>
+        <p>과학b<span class="score"></span>점</p>
+        <p>과학c<span class="score"></span>점</p>
+        <p>과학d<span class="score"></span>점</p>
+        입니다
+    </div>
+    <button id="change-button">점수굴리기</button>
+    <script>
+        const button = document.getElementById('change-button');
+        const score = document.getElementsByClassName('score');
+
+        button.addEventListener('click', 점수굴리기)
+
+        function 점수굴리기() {
+
+            for (let i = 0; i < score.length; i++) {
+                score[i].innerText = Math.floor(Math.random() * 101);
+            }
+
+        }
+        // score[0].innerText = Math.floor(Math.random() * 101);
+        // score[1].innerText = Math.floor(Math.random() * 101);
+        // score[2].innerText = Math.floor(Math.random() * 101);
+
+        console.log(score);
+    </script>
+</body>
+
+</html>

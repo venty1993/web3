@@ -2,8 +2,47 @@
 
 
 
-        document.querySelector()
-        document.querySelectorAll()
-        document.getElementById()
-        document.getElementsByClassName()
-        document.getElementsByTagName()
+        document.querySelector('css선택자')
+            -> id, tag, class 혹은, .container > content 같은 식도 가능
+               문서 위에서부터 찾는데, 가장 먼저 만나는 한개만 가져온다.
+
+        document.getElementById('id')
+            - 한 문서에서 같은 아이디는 1개만 있을수 있기 떄문에 반드시 한개이다.
+
+--------------------------------------------------------------------------------
+
+        document.querySelectorAll('css선택자')
+            -> id, tag, class 혹은, .container > content 같은 식도 가능
+               문서 내에 조건이 맞는 모든것을 가져온다.
+
+        document.getElementsByClassName('class')
+            -> 클래스는 한 문서에 여러개 존재할수 있기때문에
+               동일한 클래스를 가진 모든 개체와 연결한다.
+
+        document.getElementsByTagName('tag')
+            -> 태그는 한 문서에 여러개 존재할수 있기때문에
+               동일한 클래스를 가진 모든 개체와 연결한다.
+
+
+--------------------------------------------------------------------------------
+
+쿼리셀렉터와 겟엘리먼트의 차이점?
+
+const 핸드폰 = 쿼리셀렉터('핸드폰')
+const 핸드폰 = 겟엘리먼츠아이디('핸드폰')
+
+
+
+const 실시간컨텐츠 = document.getElementsByClassName('real-time-content');
+-> 문서에 real-time-content라는 클래스를 가진 컨텐츠가 10개 있었다
+-> 모종의 이유로 5개의 컨텐츠에서 real-time-content 라는 컨텐츠가 삭제된다.
+-> 실시간컨텐츠 라는 변수 안에는 5개만 남아있다. 
+
+const 실시간컨텐츠 = document.querySelectorAll('.real-time-content');
+
+실시간컨텐츠의 4번째꺼
+
+실시간컨텐츠[4]
+
+실시간컨텐츠[0]
+

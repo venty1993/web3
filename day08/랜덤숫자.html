@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="랜덤버튼">랜덤생성(50~100)</button>
+    <!-- 위 버튼을 눌렀을떄 알림창에 50부터 100 사이의 값중 랜덤한값이 하나 출력 되게 -->
+
+    <script>
+        // Math.random(); 임의의 수를 반환해준다. 범위는 0이상 1미만 : 0 ~ 0.99999999999999999
+        // 0~9까지 만들고싶다? -> 0 ~ 0.9999999999999999999999 *10 = 0 ~ 9.99999999999999
+        // 위의 값에서 소숫점을 탈락시키면 0~9 Math.floor
+        // 0부터 9를 만들고싶다! -> Math.floor(Math.random()*10);
+        // 1부터 10을 만들고싶다? -> Math.floor(Math.random()*10 + 1);
+        // Math.floor(Math.random() * 숫자범위 + 시작값); 랜덤값 만드는 공식
+    </script>
+</body>
+
+</html>

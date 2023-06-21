@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    컴퓨터 : 가위
+    <button id="가위">가위</button> <!--  onclick="가위내기() : html에다가 직접 넣는 방법.. 비추-->
+    <button id="바위">바위</button>
+    <button id="보">보</button>
+    <!-- 
+        동작을 부여하는거 이벤트를 부여한다
+        
+        이벤트리스너 : 어떤 상황이 발생 했을때 이벤트를 실행하겠다
+     -->
+
+    <script>
+
+        const 가위버튼 = document.getElementById('가위');
+
+        // 가위버튼.onclick = 가위내기; 얘도 잘 쓰지않는다.
+
+        가위버튼.addEventListener('click', 가위내기);
+
+        console.log(가위버튼);
+
+        function 가위내기() {
+            alert('비겼습니다');
+        }
+
+    </script>
+</body>
+
+</html>

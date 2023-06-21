@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button {
+            background-color: transparent;
+            border: #aaa solid 1px;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            background-image: url(images_frenchkebab_post_a6187026-8f2d-47d9-8177-413e3c350e70_rsp.png);
+            background-size: auto 80%;
+            background-repeat: no-repeat;
+            box-sizing: border-box;
+            background-position: 9999px;
+        }
+
+        button:active {
+            outline: 4px solid #666;
+
+        }
+
+        .game-container {
+            width: 500px;
+            border: 1px solid #888;
+            border-radius: 8px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .가위버튼 {
+            background-position: 20px;
+        }
+
+        .바위버튼 {
+            background-position: -66px;
+        }
+
+        .보버튼 {
+            background-position: -152px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="game-container">
+
+        <h1>가위바위보 게임</h1>
+        <div class="button-container">
+            <button id="가위버튼" class="가위버튼"></button>
+            <button id="바위버튼" class="바위버튼"></button>
+            <button id="보버튼" class="보버튼"></button>
+            <p>버튼을 누르면 컴퓨터도 낸다!</p>
+        </div>
+        <div class="computer-container">
+            <p>컴퓨터의 선택은!</p>
+            <button class=""></button>
+        </div>
+        <p id="result">결과</p>
+    </div>
+
+    <script>
+        // 가위바위보 버튼을 눌렀을때 컴퓨터는 랜덤하게 가위바위보 셋중 하나를 낸다.
+        // 내가 누른 버튼의 승무패 여부를 알림창에 표시하세요.
+        const 가위버튼 = document.getElementById("가위버튼");
+        const 바위버튼 = document.getElementById("바위버튼");
+        const 보버튼 = document.getElementById("보버튼");
+
+    </script>
+</body>
+
+</html>
