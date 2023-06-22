@@ -72,6 +72,59 @@
         const 바위버튼 = document.getElementById("바위버튼");
         const 보버튼 = document.getElementById("보버튼");
 
+
+        let comupter;
+
+        function 컴퓨터의차례() {
+            computer = Math.floor(Math.random() * 3);
+            if (computer === 0) {
+                alert("컴 : 가위");
+            } else if (computer === 1) {
+                alert("컴 : 바위");
+            } else {
+                alert("컴 : 보");
+            }
+
+        }
+        // 버튼을 누르면 어떤 일이 벌어져야하는가?
+
+        // 0 = 가위, 1 = 바위, 2 = 보;
+        가위버튼.addEventListener('click', () => {
+
+            컴퓨터의차례();
+
+            if (computer === 0) {
+                alert('무승부')
+            } else if (computer === 1) {
+                alert('패배')
+            } else {
+                alert('승리')
+            }
+        })
+        // 0 = 가위, 1 = 바위, 2 = 보;
+        바위버튼.addEventListener('click', () => {
+            컴퓨터의차례();
+            if (computer === 0) {
+                alert('승리')
+            } else if (computer === 1) {
+                alert('무승부')
+            } else {
+                alert('패배')
+            }
+        })
+        보버튼.addEventListener('click', () => {
+            컴퓨터의차례();
+            if (computer === 0) {
+                alert('패배')
+            } else if (computer === 1) {
+                alert('승리')
+            } else {
+                alert('무승부')
+            }
+        })
+
+
+
     </script>
 </body>
 
