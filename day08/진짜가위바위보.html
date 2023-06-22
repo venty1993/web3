@@ -75,53 +75,43 @@
 
         let comupter;
 
-        function 컴퓨터의차례() {
-            computer = Math.floor(Math.random() * 3);
-            if (computer === 0) {
-                alert("컴 : 가위");
-            } else if (computer === 1) {
-                alert("컴 : 바위");
-            } else {
-                alert("컴 : 보");
-            }
 
-        }
         // 버튼을 누르면 어떤 일이 벌어져야하는가?
 
         // 0 = 가위, 1 = 바위, 2 = 보;
         가위버튼.addEventListener('click', () => {
-
-            컴퓨터의차례();
-
-            if (computer === 0) {
-                alert('무승부')
-            } else if (computer === 1) {
-                alert('패배')
-            } else {
-                alert('승리')
-            }
+            가위바위보(0)
         })
-        // 0 = 가위, 1 = 바위, 2 = 보;
         바위버튼.addEventListener('click', () => {
-            컴퓨터의차례();
-            if (computer === 0) {
-                alert('승리')
-            } else if (computer === 1) {
-                alert('무승부')
-            } else {
-                alert('패배')
-            }
+            가위바위보(1);
         })
         보버튼.addEventListener('click', () => {
-            컴퓨터의차례();
-            if (computer === 0) {
-                alert('패배')
-            } else if (computer === 1) {
-                alert('승리')
-            } else {
-                alert('무승부')
-            }
+            가위바위보(2);
         })
+
+        function 가위바위보(유저의선택) {
+            컴퓨터의차례();
+            if (comupter === 유저의선택) {
+                alert('무승부')
+            } else if ((comupter === 1 && 유저의선택 === 0) || (comupter === 2 && 유저의선택 === 1) || (comupter === 0 && 유저의선택 === 2)) {
+                alert('패배')
+            } else {
+                alert('승리')
+            }
+
+            function 컴퓨터의차례() {
+                comupter = Math.floor(Math.random() * 3);
+                if (comupter === 0) {
+                    alert("컴 : 가위");
+                } else if (comupter === 1) {
+                    alert("컴 : 바위");
+                } else {
+                    alert("컴 : 보");
+                }
+
+            }
+        }
+
 
 
 
