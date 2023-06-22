@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container hi bye good hmm" id="container">
+
+    </div>
+
+
+    <script>
+        const container = document.getElementById('container');
+
+        container.classList.add('oh-my-god') //클래스추가
+        container.classList.remove('hi') //클래스삭제
+
+        console.log(container.classList.contains('good'));
+        // contains메서드는 개체 안에 해당 클래스가 있는지 확인. 있으면 t 없으면 f 반환
+        container.classList.toggle('토글클래스');
+        container.classList.toggle('토글클래스');
+        container.classList.toggle('토글클래스');
+
+    </script>
+</body>
+
+</html>
