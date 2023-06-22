@@ -12,7 +12,7 @@
             border-radius: 50%;
             width: 100px;
             height: 100px;
-            background-image: url(images_frenchkebab_post_a6187026-8f2d-47d9-8177-413e3c350e70_rsp.png);
+            background-image: url(../day08/images_frenchkebab_post_a6187026-8f2d-47d9-8177-413e3c350e70_rsp.png);
             background-size: auto 80%;
             background-repeat: no-repeat;
             box-sizing: border-box;
@@ -72,6 +72,8 @@
         const 바위버튼 = document.getElementById("바위버튼");
         const 보버튼 = document.getElementById("보버튼");
 
+        const 컴퓨터버튼 = document.querySelector('.computer-container > button')
+        const 결과 = document.getElementById('result')
 
         let comupter;
 
@@ -92,21 +94,35 @@
         function 가위바위보(유저의선택) {
             컴퓨터의차례();
             if (comupter === 유저의선택) {
-                alert('무승부')
+                // alert('무승부')
+                결과.innerText = '무승부!'
             } else if ((comupter === 1 && 유저의선택 === 0) || (comupter === 2 && 유저의선택 === 1) || (comupter === 0 && 유저의선택 === 2)) {
-                alert('패배')
+                // alert('패배')
+                결과.innerText = '당신의 패배입니다'
             } else {
-                alert('승리')
+                결과.innerText = '당신의 승리입니다!'
+                // alert('승리')
             }
 
             function 컴퓨터의차례() {
                 comupter = Math.floor(Math.random() * 3);
+                버튼초기화();
                 if (comupter === 0) {
-                    alert("컴 : 가위");
+                    // alert("컴 : 가위");
+                    컴퓨터버튼.classList.add('가위버튼')
+
                 } else if (comupter === 1) {
-                    alert("컴 : 바위");
+                    컴퓨터버튼.classList.add('바위버튼')
+                    // alert("컴 : 바위");
                 } else {
-                    alert("컴 : 보");
+                    컴퓨터버튼.classList.add('보버튼')
+                    // alert("컴 : 보");
+                }
+
+                function 버튼초기화() {
+                    컴퓨터버튼.classList.remove('바위버튼')
+                    컴퓨터버튼.classList.remove('가위버튼')
+                    컴퓨터버튼.classList.remove('보버튼')
                 }
 
             }
