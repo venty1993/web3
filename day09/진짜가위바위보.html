@@ -63,6 +63,7 @@
             <button class=""></button>
         </div>
         <p id="result">결과</p>
+        <p id="win-count">총승리 : xx회, 연승 xx회</p>
     </div>
 
     <script>
@@ -71,11 +72,15 @@
         const 가위버튼 = document.getElementById("가위버튼");
         const 바위버튼 = document.getElementById("바위버튼");
         const 보버튼 = document.getElementById("보버튼");
+        const 승리표시 = document.getElementById('win-count');
 
         const 컴퓨터버튼 = document.querySelector('.computer-container > button')
         const 결과 = document.getElementById('result')
 
         let comupter;
+
+        let totalWin = 0;
+        let 연승 = 0;
 
 
         // 버튼을 누르면 어떤 일이 벌어져야하는가?
@@ -98,11 +103,19 @@
                 결과.innerText = '무승부!'
             } else if ((comupter === 1 && 유저의선택 === 0) || (comupter === 2 && 유저의선택 === 1) || (comupter === 0 && 유저의선택 === 2)) {
                 // alert('패배')
+                연승 = 0;
                 결과.innerText = '당신의 패배입니다'
             } else {
+                totalWin++;
+                연승++;
                 결과.innerText = '당신의 승리입니다!'
                 // alert('승리')
             }
+
+            승리표시.innerText = `총승리 : ${totalWin}회, 연승 ${연승}회`
+
+
+
 
             function 컴퓨터의차례() {
                 comupter = Math.floor(Math.random() * 3);
