@@ -28,6 +28,61 @@
             정답.push(난수);
         }
 
+        // console.log(정답)
+
+        for (let i = 0; i < 10; i++) {
+            console.log(`${i + 1}번째 시도입니다.`);
+
+            const 적중 = 게임();
+
+            if (적중 === 4) {
+                console.log('정답!');
+                break;
+            } else if (i === 9) {
+                console.log('패배하셨군요');
+                console.log(`당신이 찾아 헤메던 정답은 ${정답} 입니다 ㅋㅋ`)
+            }
+        }
+
+
+        function 게임() {
+
+            const userInput = [];
+            let 스트라이크 = 0;
+            let 볼 = 0;
+
+            for (let i = 0; i < 4; i++) {
+                userInput.push(Number(prompt('숫자를 입력하세요')));
+            }
+
+            for (let i = 0; i < 4; i++) {
+                if (정답[i] === userInput[i]) {
+                    스트라이크++;
+                }
+
+                for (let j = 0; j < 4; j++) {
+                    if (i !== j && userInput[i] === 정답[j]) {
+                        볼++;
+                    }
+                }
+            }
+
+            console.log(`스트라이크 : ${스트라이크}, 볼: ${볼}`);
+            console.log(userInput);
+
+            return 스트라이크;
+
+            // userInput.pop() 배열 맨 뒤의 요소를 꺼내쓴다(배열에서는 지워짐)
+            // userInput.shift() 배열 맨 앞의 요솔르 꺼내쓴다(배열에서는 지워짐)
+            // userInput.splice (몇번째거부터,몇개를지울거냐)
+
+
+
+
+        }
+
+
+
 
 
 
