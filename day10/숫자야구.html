@@ -5,6 +5,133 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        :root {
+            --str-gap: -63px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #222;
+            border-radius: 4px;
+            padding: 64px;
+            box-sizing: border-box;
+        }
+
+        .game-board {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .round {
+            width: 120px;
+            /* height: 20px; */
+            background-color: pink;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+
+        }
+
+        .status {
+            width: 120px;
+            height: 120px;
+            border: 1px solid #333;
+            border-radius: 2px;
+
+        }
+
+        .number-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            border: 1px solid #333;
+            padding: 16px;
+        }
+
+        .number-place {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-repeat: no-repeat;
+        }
+
+        .number-place.number1 {
+            background-image: url(lovepik-vector-arabic-numbers-png-image_401079456_wh1200.png);
+            background-size: 416%;
+            background-position-y: -26px;
+            background-position-x: calc(var(--str-gap) * 1);
+        }
+
+        .number-place.number2 {
+            background-image: url(lovepik-vector-arabic-numbers-png-image_401079456_wh1200.png);
+            background-size: 416%;
+            background-position-y: -26px;
+            background-position-x: calc(var(--str-gap) * 2);
+        }
+
+        .number-place.number3 {
+            background-image: url(lovepik-vector-arabic-numbers-png-image_401079456_wh1200.png);
+            background-size: 416%;
+            background-position-x: calc(var(--str-gap) * 3);
+            background-position-y: -26px;
+        }
+
+        .number-place.number4 {
+            background-image: url(lovepik-vector-arabic-numbers-png-image_401079456_wh1200.png);
+            background-size: 416%;
+            background-position-x: calc(var(--str-gap) * 4);
+            background-position-y: -26px;
+        }
+
+        .number-place.number5 {
+            background-image: url(lovepik-vector-arabic-numbers-png-image_401079456_wh1200.png);
+            background-size: 416%;
+            background-position-y: -112px;
+        }
+
+        .number-place.number6 {
+            background-image: url(lovepik-vector-arabic-numbers-png-image_401079456_wh1200.png);
+            background-size: 416%;
+            background-position-y: -112px;
+            background-position-x: calc(var(--str-gap) * 1);
+        }
+
+        .number-place.number7 {
+            background-image: url(lovepik-vector-arabic-numbers-png-image_401079456_wh1200.png);
+            background-size: 416%;
+            background-position-y: -112px;
+            background-position-x: calc(var(--str-gap) * 2);
+        }
+
+        .number-place.number8 {
+            background-image: url(lovepik-vector-arabic-numbers-png-image_401079456_wh1200.png);
+            background-size: 416%;
+            background-position-y: -112px;
+            background-position-x: calc(var(--str-gap) * 3);
+        }
+
+        .number-place.number9 {
+            background-image: url(lovepik-vector-arabic-numbers-png-image_401079456_wh1200.png);
+            background-size: 416%;
+            background-position-y: -112px;
+            background-position-x: calc(var(--str-gap) * 4);
+        }
+
+        .number-place.number0 {
+            background-image: url(lovepik-vector-arabic-numbers-png-image_401079456_wh1200.png);
+            background-size: 416%;
+            background-position: 0px -26px;
+        }
+    </style>
 </head>
 
 <body>
@@ -124,25 +251,25 @@
             </div>
         </div>
         <div class="contol">
-            <button id="reset"></button>
+            <button id="reset">리셋</button>
             <div class="control-number-container">
-                <div class="number-place"></div>
-                <div class="number-place"></div>
-                <div class="number-place"></div>
-                <div class="number-place"></div>
-                <div class="number-place"></div>
-                <div class="number-place"></div>
-                <div class="number-place"></div>
-                <div class="number-place"></div>
-                <div class="number-place"></div>
-                <div class="number-place"></div>
+                <div class="number-place number1"></div>
+                <div class="number-place number2"></div>
+                <div class="number-place number3"></div>
+                <div class="number-place number4"></div>
+                <div class="number-place number5"></div>
+                <div class="number-place number6"></div>
+                <div class="number-place number7"></div>
+                <div class="number-place number8"></div>
+                <div class="number-place number9"></div>
+                <div class="number-place number0"></div>
             </div>
-            <button id="submit"></button>
+            <button id="submit">제출</button>
         </div>
 
     </div>
 
-    <script>
+    <!-- <script>
         // 배열 하나 만들고,
         // 랜덤한 숫자(0~9)를 4개 넣어주세요.
         // 배열에 값 추가하기 : 배열.push(추가할값);
@@ -221,7 +348,7 @@
 
 
 
-    </script>
+    </script> -->
 </body>
 
 </html>
