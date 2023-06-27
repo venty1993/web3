@@ -335,6 +335,7 @@
         <div class="contol">
             <button id="reset">리셋</button>
             <div class="control-number-container">
+                <div class="number-place number0"></div>
                 <div class="number-place number1"></div>
                 <div class="number-place number2"></div>
                 <div class="number-place number3"></div>
@@ -344,12 +345,45 @@
                 <div class="number-place number7"></div>
                 <div class="number-place number8"></div>
                 <div class="number-place number9"></div>
-                <div class="number-place number0"></div>
             </div>
             <button id="submit">제출</button>
         </div>
 
     </div>
+
+
+    <script>
+        const numberButtons = document.querySelectorAll('.control-number-container > .number-place');
+        const rounds = document.getElementsByClassName('round');
+        const resetButton = document.getElementById('reset');
+
+        const 입력된숫자 = [];
+        let count = 0;
+        let nowRound = 0
+
+        for (let i = 0; i < numberButtons.length; i++) {
+            numberButtons[i].addEventListener('click', () => {
+                if (count !== 4) {
+                    rounds[nowRound].children[1].children[count].classList.add(`number${i}`)
+                    입력된숫자.push(i);
+                    count++;
+                }
+            })
+        }
+
+        resetButton.addEventListener('click', () => {
+            for (let i = 0; i < 4; i++) {
+                for (let j = 0; j < 10; j++) {
+                    rounds[nowRound].children[1].children[i].classList.remove(`number${j}`)
+                }
+            }
+            count = 0;
+            입력된숫자.splice(0)
+
+
+        })
+
+    </script>
 
     <!-- <script>
         // 배열 하나 만들고,
