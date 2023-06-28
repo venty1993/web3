@@ -372,6 +372,22 @@
             })
         }
 
+        window.addEventListener('keyup', (e) => {
+            console.log(e.key);
+            const inputKeyNumber = Number(e.key);
+            if (inputKeyNumber && count !== 4) {
+                rounds[nowRound].children[1].children[count].classList.add(`number${inputKeyNumber}`)
+                입력된숫자.push(inputKeyNumber);
+                count++;
+
+            }
+
+            if (e.key === 'Enter') {
+                제출();
+            }
+        })
+
+
         resetButton.addEventListener('click', () => {
             for (let i = 0; i < 4; i++) {
                 for (let j = 0; j < 10; j++) {
@@ -402,7 +418,9 @@
 
         const answer = document.querySelector('.marking');
 
-        submitButton.addEventListener('click', () => {
+        submitButton.addEventListener('click', 제출)
+
+        function 제출() {
             if (입력된숫자.length === 4) {
 
                 const 적중 = 게임();
@@ -422,18 +440,10 @@
                     }
                 }
 
-
-
                 if (적중[0] === 4) {
                     //승리시
                     console.log('정답');
-                    answer.classList.add('open-answer');
-
-                    for (let i = 0; i < 4; i++) {
-                        answer.children[i].classList.add(`number${정답[i]}`)
-                    }
-
-
+                    정답오픈();
 
                 } else {
                     //틀렸을떄
@@ -443,16 +453,21 @@
                     count = 0;
                     입력된숫자.splice(0)
 
-
                 }
 
                 if (nowRound === 7) {
-                    //패배시
+                    정답오픈();
                 }
             }
 
 
+            function 정답오픈() {
+                answer.classList.add('open-answer');
 
+                for (let i = 0; i < 4; i++) {
+                    answer.children[i].classList.add(`number${정답[i]}`)
+                }
+            }
             function 게임() {
 
                 let 스트라이크 = 0;
@@ -483,7 +498,7 @@
 
 
             }
-        })
+        }
 
     </script>
 
