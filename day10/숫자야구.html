@@ -408,6 +408,22 @@
             const 적중 = 게임();
             console.log(적중);
 
+            for (let i = 0; i < 4; i++) {
+                //[2, 1]
+                //[스트,스트,볼,x]
+
+                //앞에 2칸에는 strike 라는 클래스를 넣고
+                //그다음 1칸에는 ball이라는 클래스를 넣는 방법
+
+                if (i < 적중[0]) {
+                    rounds[nowRound].children[0].children[i].classList.add(`strike`)
+                } else if (i < 적중[0] + 적중[1]) {
+                    rounds[nowRound].children[0].children[i].classList.add(`ball`)
+                }
+            }
+
+
+
             if (적중[0] === 4) {
                 //승리시
                 console.log('정답');
