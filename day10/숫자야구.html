@@ -400,13 +400,24 @@
         console.log(정답);
         const submitButton = document.getElementById('submit');
 
+        const answer = document.querySelector('.marking');
+
         submitButton.addEventListener('click', () => {
 
 
             const 적중 = 게임();
+            console.log(적중);
 
-            if (적중 === 4) {
+            if (적중[0] === 4) {
                 //승리시
+                console.log('정답');
+                answer.classList.add('open-answer');
+
+                for (let i = 0; i < 4; i++) {
+                    answer.children[i].classList.add(`number${정답[i]}`)
+                }
+
+
 
             } else {
                 //틀렸을떄
@@ -439,7 +450,7 @@
                 console.log(`스트라이크 : ${스트라이크}, 볼: ${볼}`);
                 console.log(입력된숫자);
 
-                return 스트라이크;
+                return [스트라이크, 볼];
 
                 // userInput.pop() 배열 맨 뒤의 요소를 꺼내쓴다(배열에서는 지워짐)
                 // userInput.shift() 배열 맨 앞의 요솔르 꺼내쓴다(배열에서는 지워짐)
