@@ -74,15 +74,15 @@
 <body>
 
     <section id="test">
-        <!-- 
+
         <div class="slider">
             <div class="content">1</div>
             <div class="content">2</div>
             <div class="content">3</div>
             <div class="content">4</div>
-        </div> -->
+        </div>
 
-        <div class="slider">
+        <!-- <div class="slider">
             <div class="slider-view">
                 <div class="contents-wrapper">
                     <div class="content">
@@ -107,16 +107,47 @@
                     다음
                 </button>
             </div>
-        </div>
+        </div> -->
     </section>
     <script>
         //1. 쿼리셀렉터
         //2. 겟엘리먼츠바이클래스네임
-        const slider = document.querySelector('.slider');
+        function makeNode(tagName, className) {
+            const node = document.createElement(tagName);
+            node.classList.add(className);
 
-        const ul = document.querySelector('.contents-wrapper');
-        const prevButton = document.getElementById('prev');
-        const nextButton = document.getElementById('next');
+            return node;
+        }
+
+        const slider = document.querySelector('.slider');
+        const contents = [];
+
+        // const sliderView = makeNode('div', 'slider-view');
+        const sliderView = document.createElement('div');
+        sliderView.classList.add('slider-view');
+
+        const contentsWrapper = makeNode('div', 'contents-wrapper');
+        const buttons = makeNode('div', 'buttons');
+        const slidePrev = makeNode('button', 'slide-prev');
+        const slideNext = makeNode('button', 'slide-next');
+
+        for (let i = 0; i < slider.childElementCount; i++) {
+            contents[i] = slider.children[i];
+        }
+        console.log(contents);
+
+        slider.appendChild(sliderView);
+        sliderView.appendChild(contentsWrapper);
+
+        for (let i = 0; i < contents.length; i++) {
+            contentsWrapper.appendChild(contents[i]);
+        }
+
+        slider.appendChild(buttons);
+        buttons.appendChild(slidePrev);
+        buttons.appendChild(slideNext);
+        slidePrev.innerText = "이전";
+        slideNext.innerText = "다음";
 
         const sliderWidth = slider.clientWidth;
         const sliderHeight = slider.clientHeight;
@@ -125,24 +156,24 @@
 
         let index = 0;
 
-        for (let i = 0; i < ul.childElementCount; i++) {
-            ul.children[i].style.width = `${sliderWidth}px`
-            ul.children[i].style.height = `${sliderHeight}px`
-        }
+        // for (let i = 0; i < ul.childElementCount; i++) {
+        // ul.children[i].style.width = `${sliderWidth}px`
+        // ul.children[i].style.height = `${sliderHeight}px`
+        // }
 
-        prevButton.addEventListener('click', () => {
-            index--;
-            위치적용();
-        })
+        // prevButton.addEventListener('click', () => {
+        //     index--;
+        //     위치적용();
+        // })
 
-        nextButton.addEventListener('click', () => {
-            index++;
-            위치적용();
-        })
+        // nextButton.addEventListener('click', () => {
+        //     index++;
+        //     위치적용();
+        // })
 
-        function 위치적용() {
-            ul.style.transform = `translateX(-${index * sliderWidth}px)`
-        }
+        // function 위치적용() {
+            // ul.style.transform = `translateX(-${index * sliderWidth}px)`
+        // }
 
         //1. 클래스로 가져오면 배열에 담겨있는걸 잊으면 안됩니다
         //2. li가 아닌 ul을 움직여야합니다.
