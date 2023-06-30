@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        section#test {
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+        .slider {
+            width: 100%;
+            height: 500px;
+            position: relative;
+        }
+
+        .slider-view {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+
+        }
+
+        .contents-wrapper {
+            display: flex;
+            transition: 0.5s;
+        }
+
+        .content {
+            /* width: 200px;
+            height: 100px; */
+            border: 1px solid #222;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .buttons {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide-prev {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translate(calc(-100% - 16px), -50%);
+
+        }
+
+        .slide-next {
+            top: 50%;
+            position: absolute;
+            right: 0;
+            transform: translate(calc(100% + 16px), -50%);
+        }
+    </style>
+</head>
+
+<body>
+
+    <section id="test">
+        <!-- 
+        <div class="slider">
+            <div class="content">1</div>
+            <div class="content">2</div>
+            <div class="content">3</div>
+            <div class="content">4</div>
+        </div> -->
+
+        <div class="slider">
+            <div class="slider-view">
+                <div class="contents-wrapper">
+                    <div class="content">
+                        1
+                    </div>
+                    <div class="content">
+                        2
+                    </div>
+                    <div class="content">
+                        3
+                    </div>
+                    <div class="content">
+                        4
+                    </div>
+                </div>
+            </div>
+            <div class="buttons">
+                <button class="slide-prev">
+                    이전
+                </button>
+                <button class="slide-next">
+                    다음
+                </button>
+            </div>
+        </div>
+    </section>
+    <script>
+        //1. 쿼리셀렉터
+        //2. 겟엘리먼츠바이클래스네임
+        const slider = document.querySelector('.slider');
+
+        const ul = document.querySelector('.contents-wrapper');
+        const prevButton = document.getElementById('prev');
+        const nextButton = document.getElementById('next');
+
+        const sliderWidth = slider.clientWidth;
+        const sliderHeight = slider.clientHeight;
+
+        console.log(sliderWidth, sliderHeight)
+
+        let index = 0;
+
+        for (let i = 0; i < ul.childElementCount; i++) {
+            ul.children[i].style.width = `${sliderWidth}px`
+            ul.children[i].style.height = `${sliderHeight}px`
+        }
+
+        prevButton.addEventListener('click', () => {
+            index--;
+            위치적용();
+        })
+
+        nextButton.addEventListener('click', () => {
+            index++;
+            위치적용();
+        })
+
+        function 위치적용() {
+            ul.style.transform = `translateX(-${index * sliderWidth}px)`
+        }
+
+        //1. 클래스로 가져오면 배열에 담겨있는걸 잊으면 안됩니다
+        //2. li가 아닌 ul을 움직여야합니다.
+        //   li를 움직일수도 있지만 반목문을 써야하고, 비효율적입니다.
+        //3. translateX(-200px) 이라는 값은 문자열 안에 들어가야 합니다.
+        //4. 슬라이드가 1 -> 2 -> 3 -> 4 로 움직이려면 변수가 하나 필요할수도?
+
+    </script>
+</body>
+
+</html>

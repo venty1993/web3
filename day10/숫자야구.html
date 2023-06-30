@@ -353,150 +353,151 @@
 
 
     <script>
-        const numberButtons = document.querySelectorAll('.control-number-container > .number-place');
-        const rounds = document.getElementsByClassName('round');
-        const resetButton = document.getElementById('reset');
+
+        야구게임();
+
+        function 야구게임() {
 
 
-        const 입력된숫자 = [];
-        let count = 0;
-        let nowRound = 0
+            const numberButtons = document.querySelectorAll('.control-number-container > .number-place');
+            const rounds = document.getElementsByClassName('round');
+            const resetButton = document.getElementById('reset');
 
-        for (let i = 0; i < numberButtons.length; i++) {
-            numberButtons[i].addEventListener('click', () => {
-                if (count !== 4) {
-                    rounds[nowRound].children[1].children[count].classList.add(`number${i}`)
-                    입력된숫자.push(i);
+
+            const 입력된숫자 = [];
+            let count = 0;
+            let nowRound = 0
+
+            for (let i = 0; i < numberButtons.length; i++) {
+                numberButtons[i].addEventListener('click', () => {
+                    if (count !== 4) {
+                        rounds[nowRound].children[1].children[count].classList.add(`number${i}`)
+                        입력된숫자.push(i);
+                        count++;
+                    }
+                })
+            }
+
+            window.addEventListener('keyup', (e) => {
+                const inputKeyNumber = Number(e.key);
+                if (inputKeyNumber && count !== 4) {
+                    rounds[nowRound].children[1].children[count].classList.add(`number${inputKeyNumber}`)
+                    입력된숫자.push(inputKeyNumber);
                     count++;
+
+                }
+
+                if (e.key === 'Enter') {
+                    제출();
                 }
             })
-        }
-
-        window.addEventListener('keyup', (e) => {
-            console.log(e.key);
-            const inputKeyNumber = Number(e.key);
-            if (inputKeyNumber && count !== 4) {
-                rounds[nowRound].children[1].children[count].classList.add(`number${inputKeyNumber}`)
-                입력된숫자.push(inputKeyNumber);
-                count++;
-
-            }
-
-            if (e.key === 'Enter') {
-                제출();
-            }
-        })
 
 
-        resetButton.addEventListener('click', () => {
+            resetButton.addEventListener('click', () => {
+                for (let i = 0; i < 4; i++) {
+                    for (let j = 0; j < 10; j++) {
+                        rounds[nowRound].children[1].children[i].classList.remove(`number${j}`)
+                    }
+                }
+                count = 0;
+                입력된숫자.splice(0)
+
+
+            })
+
+            const 정답 = [];
+
             for (let i = 0; i < 4; i++) {
-                for (let j = 0; j < 10; j++) {
-                    rounds[nowRound].children[1].children[i].classList.remove(`number${j}`)
-                }
-            }
-            count = 0;
-            입력된숫자.splice(0)
+                let 난수;
 
-
-        })
-
-        const 정답 = [];
-
-        for (let i = 0; i < 4; i++) {
-            let 난수;
-
-            while (true) {
-                난수 = Math.floor(Math.random() * 10);
-                if (정답.indexOf(난수) === -1) {
-                    break;
-                }
-            }
-            정답.push(난수);
-        }
-        console.log(정답);
-        const submitButton = document.getElementById('submit');
-
-        const answer = document.querySelector('.marking');
-
-        submitButton.addEventListener('click', 제출)
-
-        function 제출() {
-            if (입력된숫자.length === 4) {
-
-                const 적중 = 게임();
-                console.log(적중);
-
-                for (let i = 0; i < 4; i++) {
-                    //[2, 1]
-                    //[스트,스트,볼,x]
-
-                    //앞에 2칸에는 strike 라는 클래스를 넣고
-                    //그다음 1칸에는 ball이라는 클래스를 넣는 방법
-
-                    if (i < 적중[0]) {
-                        rounds[nowRound].children[0].children[i].classList.add(`strike`)
-                    } else if (i < 적중[0] + 적중[1]) {
-                        rounds[nowRound].children[0].children[i].classList.add(`ball`)
+                while (true) {
+                    난수 = Math.floor(Math.random() * 10);
+                    if (정답.indexOf(난수) === -1) {
+                        break;
                     }
                 }
-
-                if (적중[0] === 4) {
-                    //승리시
-                    console.log('정답');
-                    정답오픈();
-
-                } else {
-                    //틀렸을떄
-                    rounds[nowRound].classList.remove('now-play');
-                    nowRound++;
-                    rounds[nowRound].classList.add('now-play');
-                    count = 0;
-                    입력된숫자.splice(0)
-
-                }
-
-                if (nowRound === 7) {
-                    정답오픈();
-                }
+                정답.push(난수);
             }
+            const submitButton = document.getElementById('submit');
 
+            const answer = document.querySelector('.marking');
 
-            function 정답오픈() {
-                answer.classList.add('open-answer');
+            submitButton.addEventListener('click', 제출)
 
-                for (let i = 0; i < 4; i++) {
-                    answer.children[i].classList.add(`number${정답[i]}`)
-                }
-            }
-            function 게임() {
+            function 제출() {
+                if (입력된숫자.length === 4) {
 
-                let 스트라이크 = 0;
-                let 볼 = 0;
+                    const 적중 = 게임();
 
-                for (let i = 0; i < 4; i++) {
-                    if (정답[i] === 입력된숫자[i]) {
-                        스트라이크++;
-                    }
+                    for (let i = 0; i < 4; i++) {
+                        //[2, 1]
+                        //[스트,스트,볼,x]
 
-                    for (let j = 0; j < 4; j++) {
-                        if (i !== j && 입력된숫자[i] === 정답[j]) {
-                            볼++;
+                        //앞에 2칸에는 strike 라는 클래스를 넣고
+                        //그다음 1칸에는 ball이라는 클래스를 넣는 방법
+
+                        if (i < 적중[0]) {
+                            rounds[nowRound].children[0].children[i].classList.add(`strike`)
+                        } else if (i < 적중[0] + 적중[1]) {
+                            rounds[nowRound].children[0].children[i].classList.add(`ball`)
                         }
                     }
+
+                    if (적중[0] === 4) {
+                        //승리시
+                        정답오픈();
+
+                    } else {
+                        //틀렸을떄
+                        rounds[nowRound].classList.remove('now-play');
+                        nowRound++;
+                        rounds[nowRound].classList.add('now-play');
+                        count = 0;
+                        입력된숫자.splice(0)
+
+                    }
+
+                    if (nowRound === 7) {
+                        정답오픈();
+                    }
                 }
 
-                console.log(`스트라이크 : ${스트라이크}, 볼: ${볼}`);
-                console.log(입력된숫자);
 
-                return [스트라이크, 볼];
+                function 정답오픈() {
+                    answer.classList.add('open-answer');
 
-                // userInput.pop() 배열 맨 뒤의 요소를 꺼내쓴다(배열에서는 지워짐)
-                // userInput.shift() 배열 맨 앞의 요솔르 꺼내쓴다(배열에서는 지워짐)
-                // userInput.splice (몇번째거부터,몇개를지울거냐)
+                    for (let i = 0; i < 4; i++) {
+                        answer.children[i].classList.add(`number${정답[i]}`)
+                    }
+                }
+                function 게임() {
+
+                    let 스트라이크 = 0;
+                    let 볼 = 0;
+
+                    for (let i = 0; i < 4; i++) {
+                        if (정답[i] === 입력된숫자[i]) {
+                            스트라이크++;
+                        }
+
+                        for (let j = 0; j < 4; j++) {
+                            if (i !== j && 입력된숫자[i] === 정답[j]) {
+                                볼++;
+                            }
+                        }
+                    }
+
+
+                    return [스트라이크, 볼];
+
+                    // userInput.pop() 배열 맨 뒤의 요소를 꺼내쓴다(배열에서는 지워짐)
+                    // userInput.shift() 배열 맨 앞의 요솔르 꺼내쓴다(배열에서는 지워짐)
+                    // userInput.splice (몇번째거부터,몇개를지울거냐)
 
 
 
 
+                }
             }
         }
 
