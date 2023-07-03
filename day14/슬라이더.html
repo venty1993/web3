@@ -47,6 +47,26 @@
             flex-shrink: 0;
         }
 
+        .dot-buttons {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 16px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: gray;
+        }
+
+        .dot.active {
+            background-color: pink;
+        }
+
         .buttons {
             position: absolute;
             top: 0;
@@ -99,6 +119,12 @@
                     </div>
                 </div>
             </div>
+            <div class="dot-buttons">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
             <div class="buttons">
                 <button class="slide-prev">
                     이전
@@ -122,6 +148,10 @@
         const slider = document.querySelector('.slider');
         const contents = [];
 
+        for (let i = 0; i < slider.childElementCount; i++) {
+            contents[i] = slider.children[i];
+        }
+
         // const sliderView = makeNode('div', 'slider-view');
         const sliderView = document.createElement('div');
         sliderView.classList.add('slider-view');
@@ -131,9 +161,7 @@
         const slidePrev = makeNode('button', 'slide-prev');
         const slideNext = makeNode('button', 'slide-next');
 
-        for (let i = 0; i < slider.childElementCount; i++) {
-            contents[i] = slider.children[i];
-        }
+
         console.log(contents);
 
         slider.appendChild(sliderView);
@@ -149,6 +177,22 @@
         slidePrev.innerText = "이전";
         slideNext.innerText = "다음";
 
+
+        const dotButtons = makeNode('div', 'dot-buttons');
+
+        for (let i = 0; i < contents.length; i++) {
+            const dot = makeNode('div', 'dot');
+            dotButtons.appendChild(dot);
+
+            dot.addEventListener('click', () => {
+                index = i;
+                위치적용();
+            })
+        }
+        slider.appendChild(dotButtons);
+
+        //------------------------------------------------------------------------ 
+
         const sliderWidth = slider.clientWidth;
         const sliderHeight = slider.clientHeight;
 
@@ -156,24 +200,30 @@
 
         let index = 0;
 
-        // for (let i = 0; i < ul.childElementCount; i++) {
-        // ul.children[i].style.width = `${sliderWidth}px`
-        // ul.children[i].style.height = `${sliderHeight}px`
-        // }
+        for (let i = 0; i < contentsWrapper.childElementCount; i++) {
+            contentsWrapper.children[i].style.width = `${sliderWidth}px`
+            contentsWrapper.children[i].style.height = `${sliderHeight}px`
+        }
 
-        // prevButton.addEventListener('click', () => {
-        //     index--;
-        //     위치적용();
-        // })
+        slidePrev.addEventListener('click', () => {
+            index--;
+            위치적용();
+        })
 
-        // nextButton.addEventListener('click', () => {
-        //     index++;
-        //     위치적용();
-        // })
+        slideNext.addEventListener('click', () => {
+            index++;
+            위치적용();
+        })
 
-        // function 위치적용() {
-            // ul.style.transform = `translateX(-${index * sliderWidth}px)`
-        // }
+        function 위치적용() {
+            for (let i = 0; i < dotButtons.childElementCount; i++) {
+                dotButtons.children[i].classList.remove('active');
+            }
+            dotButtons.children[index].classList.add('active');
+
+
+            contentsWrapper.style.transform = `translateX(-${index * sliderWidth}px)`
+        }
 
         //1. 클래스로 가져오면 배열에 담겨있는걸 잊으면 안됩니다
         //2. li가 아닌 ul을 움직여야합니다.
