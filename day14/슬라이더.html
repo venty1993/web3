@@ -138,20 +138,21 @@
     <script>
         //1. 쿼리셀렉터
         //2. 겟엘리먼츠바이클래스네임
-        function makeNode(tagName, className) {
-            const node = document.createElement(tagName);
-            node.classList.add(className);
 
-            return node;
-        }
+
+
+
 
         const slider = document.querySelector('.slider');
+        const viewContentsCount = 1;
+        const slideSpeed = 500;
+        let index = 0 + viewContentsCount;
+
         const contents = [];
 
         for (let i = 0; i < slider.childElementCount; i++) {
             contents[i] = slider.children[i];
         }
-
         // const sliderView = makeNode('div', 'slider-view');
         const sliderView = document.createElement('div');
         sliderView.classList.add('slider-view');
@@ -160,9 +161,27 @@
         const buttons = makeNode('div', 'buttons');
         const slidePrev = makeNode('button', 'slide-prev');
         const slideNext = makeNode('button', 'slide-next');
+        slidePrev.addEventListener('click', () => {
+            index--;
+            위치적용(500);
+            if (index === 0) {
+                setTimeout(() => {
+                    index = 4;
+                    위치적용(0);
+                }, 500);
+            }
+        })
 
-
-        console.log(contents);
+        slideNext.addEventListener('click', () => {
+            index++;
+            위치적용(500);
+            if (index ===5 ) {
+                setTimeout(() => {
+                    index = 1 ;
+                    위치적용(0)
+                }, 500);
+            }
+        })
 
         slider.appendChild(sliderView);
         sliderView.appendChild(contentsWrapper);
@@ -177,10 +196,11 @@
         slidePrev.innerText = "이전";
         slideNext.innerText = "다음";
 
-
         const dotButtons = makeNode('div', 'dot-buttons');
 
+        //닷 버튼들 추가하기.
         for (let i = 0; i < contents.length; i++) {
+            //4번 만들어서 각각 넣어야하기때문에 const dot 선언은 반복문 내부에서 해야한다.
             const dot = makeNode('div', 'dot');
             dotButtons.appendChild(dot);
 
@@ -190,40 +210,64 @@
             })
         }
         slider.appendChild(dotButtons);
-
-        //------------------------------------------------------------------------ 
-
         const sliderWidth = slider.clientWidth;
         const sliderHeight = slider.clientHeight;
 
         console.log(sliderWidth, sliderHeight)
-
-        let index = 0;
 
         for (let i = 0; i < contentsWrapper.childElementCount; i++) {
             contentsWrapper.children[i].style.width = `${sliderWidth}px`
             contentsWrapper.children[i].style.height = `${sliderHeight}px`
         }
 
-        slidePrev.addEventListener('click', () => {
-            index--;
-            위치적용();
-        })
+        const cloneFirst = contents[0].cloneNode(true);
+        const cloneLast = contents[contents.length-1].cloneNode(true);
 
-        slideNext.addEventListener('click', () => {
-            index++;
-            위치적용();
-        })
+        contentsWrapper.appendChild(cloneFirst);
+        contentsWrapper.insertBefore(cloneLast,contentsWrapper.firstElementChild);
+        
+        위치적용();
 
-        function 위치적용() {
-            for (let i = 0; i < dotButtons.childElementCount; i++) {
-                dotButtons.children[i].classList.remove('active');
-            }
-            dotButtons.children[index].classList.add('active');
+        
 
+       
 
-            contentsWrapper.style.transform = `translateX(-${index * sliderWidth}px)`
+        function makeNode(tagName, className) {
+            const node = document.createElement(tagName);
+            node.classList.add(className);
+
+            return node;
         }
+
+        function 위치적용(time) {
+            // for (let i = 0; i < dotButtons.childElementCount; i++) {
+            //     dotButtons.children[i].classList.remove('active');
+            // }
+            // dotButtons.children[index-viewContentsCount].classList.add('active');
+            contentsWrapper.style.transform = `translateX(-${index * sliderWidth}px)`
+            contentsWrapper.style.transition = `${time}ms`;
+            console.log(time);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //------------------------------------------------------------------------ 
+
+
+
+       
 
         //1. 클래스로 가져오면 배열에 담겨있는걸 잊으면 안됩니다
         //2. li가 아닌 ul을 움직여야합니다.
