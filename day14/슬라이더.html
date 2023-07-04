@@ -100,6 +100,8 @@
             <div class="content">2</div>
             <div class="content">3</div>
             <div class="content">4</div>
+            <div class="content">5</div>
+            <div class="content">6</div>
         </div>
 
         <!-- <div class="slider">
@@ -144,9 +146,10 @@
 
 
         const slider = document.querySelector('.slider');
-        const viewContentsCount = 1;
+        const viewContentsCount = 2;
         const slideSpeed = 500;
         let index = 0 + viewContentsCount;
+        let moveCheck = true;
 
         const contents = [];
 
@@ -162,24 +165,36 @@
         const slidePrev = makeNode('button', 'slide-prev');
         const slideNext = makeNode('button', 'slide-next');
         slidePrev.addEventListener('click', () => {
-            index--;
-            위치적용(500);
-            if (index === 0) {
+            if(moveCheck){
+                moveCheck = false;
+
+                index--;
+
+                위치적용(slideSpeed);
                 setTimeout(() => {
-                    index = 4;
-                    위치적용(0);
-                }, 500);
+                    if (index < viewContentsCount) {
+                        index = contents.length+viewContentsCount-1;
+                        위치적용(0);
+                    }
+                    moveCheck = true;
+                }, slideSpeed);
             }
+
+           
         })
 
         slideNext.addEventListener('click', () => {
-            index++;
-            위치적용(500);
-            if (index ===5 ) {
+            if(moveCheck) {
+                moveCheck= false;
+                index++;
+                위치적용(slideSpeed);
                 setTimeout(() => {
-                    index = 1 ;
-                    위치적용(0)
-                }, 500);
+                    if (index > contents.length+viewContentsCount-1 ) {
+                        index = viewContentsCount ;
+                        위치적용(0)
+                    }
+                    moveCheck=true;
+                }, slideSpeed);
             }
         })
 
@@ -205,8 +220,8 @@
             dotButtons.appendChild(dot);
 
             dot.addEventListener('click', () => {
-                index = i;
-                위치적용();
+                index = i + viewContentsCount;
+                위치적용(slideSpeed);
             })
         }
         slider.appendChild(dotButtons);
@@ -216,8 +231,8 @@
         console.log(sliderWidth, sliderHeight)
 
         for (let i = 0; i < contentsWrapper.childElementCount; i++) {
-            contentsWrapper.children[i].style.width = `${sliderWidth}px`
-            contentsWrapper.children[i].style.height = `${sliderHeight}px`
+            contentsWrapper.children[i].style.width = `${sliderWidth/viewContentsCount}px`
+            contentsWrapper.children[i].style.height = `${sliderHeight/viewContentsCount}px`
         }
 
         const cloneFirst = contents[0].cloneNode(true);
@@ -240,11 +255,29 @@
         }
 
         function 위치적용(time) {
-            // for (let i = 0; i < dotButtons.childElementCount; i++) {
-            //     dotButtons.children[i].classList.remove('active');
-            // }
-            // dotButtons.children[index-viewContentsCount].classList.add('active');
-            contentsWrapper.style.transform = `translateX(-${index * sliderWidth}px)`
+
+            //원래는 0~3까지
+            //앞뒤로 1개가 늘어나면서 총 인덱스는 0~5까지가 되었고
+            //실제 슬라이더의 인덱스는 1~4까지가 되었다.
+
+            //dotButtons[4] 는 0~3까지의 범위를 가진다.
+            //index : 5
+            //viewCount : 1
+            //index-viewCount = 4
+            for (let i = 0; i < dotButtons.childElementCount; i++) {
+                dotButtons.children[i].classList.remove('active');
+            }
+            if(index < viewContentsCount){
+                dotButtons.lastElementChild.classList.add('active');
+
+            }else if(index > contents.length+viewContentsCount-1){
+                dotButtons.firstElementChild.classList.add('active');
+            }
+            else {
+                dotButtons.children[index-viewContentsCount].classList.add('active');
+            }
+        
+            contentsWrapper.style.transform = `translateX(-${index * sliderWidth/viewContentsCount}px)`
             contentsWrapper.style.transition = `${time}ms`;
             console.log(time);
         }
