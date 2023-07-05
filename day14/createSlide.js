@@ -20,7 +20,9 @@ function createSlide(slider, slideSpeed, viewContentsCount, flexGap) {
     const buttons = makeNode('div', 'buttons');
     const slidePrev = makeNode('button', 'slide-prev');
     const slideNext = makeNode('button', 'slide-next');
-    slidePrev.addEventListener('click', () => {
+    slidePrev.addEventListener('click', prev)
+
+    function prev() {
         if (moveCheck) {
             moveCheck = false;
 
@@ -36,10 +38,11 @@ function createSlide(slider, slideSpeed, viewContentsCount, flexGap) {
             }, slideSpeed);
         }
 
+    }
 
-    })
+    slideNext.addEventListener('click', next)
 
-    slideNext.addEventListener('click', () => {
+    function next() {
         if (moveCheck) {
             moveCheck = false;
             index++;
@@ -52,7 +55,13 @@ function createSlide(slider, slideSpeed, viewContentsCount, flexGap) {
                 moveCheck = true;
             }, slideSpeed);
         }
-    })
+    }
+
+
+    setInterval(() => {
+        next();
+    }, 5000);
+
 
     slider.appendChild(sliderView);
     sliderView.appendChild(contentsWrapper);
@@ -81,17 +90,26 @@ function createSlide(slider, slideSpeed, viewContentsCount, flexGap) {
         })
     }
     slider.appendChild(dotButtons);
-    const sliderWidth = slider.clientWidth;
+    let sliderWidth = slider.clientWidth;
     const sliderHeight = slider.clientHeight;
 
-    const contentWidth = (sliderWidth / viewContentsCount) - gap * (viewContentsCount - 1) / viewContentsCount;
 
-    console.log(sliderWidth, sliderHeight)
+    let contentWidth;
+    사이즈지정();
 
-    for (let i = 0; i < contentsWrapper.childElementCount; i++) {
-        contentsWrapper.children[i].style.width = `${contentWidth}px`
-        contentsWrapper.children[i].style.height = `${sliderHeight}px`
+    window.addEventListener('resize', 사이즈지정);
+
+    function 사이즈지정() {
+        sliderWidth = slider.clientWidth;
+        contentWidth = (sliderWidth / viewContentsCount) - gap * (viewContentsCount - 1) / viewContentsCount;
+
+        for (let i = 0; i < contentsWrapper.childElementCount; i++) {
+            contentsWrapper.children[i].style.width = `${contentWidth}px`
+            contentsWrapper.children[i].style.height = `${sliderHeight}px`
+        }
+        위치적용();
     }
+
     contentsWrapper.style.gap = `${gap}px`
 
     for (let i = contents.length - 1; i > contents.length - 1 - viewContentsCount; i--) {
